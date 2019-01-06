@@ -1,5 +1,5 @@
 from flask import Flask, request, abort
-from . import line_api
+import line_api
 import json
 app = Flask(__name__)
 
