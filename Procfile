@@ -1,1 +1,1 @@
-web: gunicorn LineSongFinder/app: app
+web: gunicorn app: app
