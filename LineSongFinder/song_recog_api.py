@@ -51,7 +51,7 @@ def get_search_list_musixmatch(lyric):
         # print(track["track"]["track_name"] + ", by " + track["track"]["artist_name"])
         result_track_list.append(track["track"]["track_name"])
 
-    return result_track_list
+    return set(result_track_list)
 
 
 if __name__ == '__main__':
