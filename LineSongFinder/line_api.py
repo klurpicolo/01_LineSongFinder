@@ -73,12 +73,20 @@ def reply_guess_song(request):
         reply_token = event["replyToken"]
         if event["message"]["type"] == "text":
             lyric = event["message"]["text"]
-            msg_text = song_recog_api.get_search_list_musixmatch(lyric)
+            msg_text_list = song_recog_api.get_search_list_musixmatch(lyric)
+            msg_text = ""
+            for msg in msg_text_list:
+                if msg_text == "":
+                    msg_text = msg
+                else:
+                    msg_text = msg_text + ', ' + msg
+                    if len(msg_text) > 20:
+                        break
         else:
             msg_text = "This isn't text!"
 
     # reply_payload
-    reply_msg["text"] = "This is reply_echo_msh: " + msg_text
+    reply_msg["text"] = msg_text
     reply_msgs = [reply_msg]
     # Set reply message
     reply_payload["replyToken"] = reply_token
