@@ -79,16 +79,16 @@ def reply_guess_song(request):
                 if msg_text == "":
                     msg_text = msg
                 else:
-                    msg_text = msg_text + "\\n" + msg
+                    msg_text = msg_text + "\n" + msg
                     if len(msg_text) >= 50:
                         break
         else:
             msg_text = "This isn't text!"
 
     # reply_payload
-    # reply_msg["text"] = msg_text
-    reply_msg["text"] = "Hello\\nasdasdasd\\nasdasdasd\\nasdasdasd\\nccc\\n"
+    reply_msg["text"] = msg_text
     reply_msgs = [reply_msg]
+
     # Set reply message
     reply_payload["replyToken"] = reply_token
     reply_payload["messages"] = reply_msgs
