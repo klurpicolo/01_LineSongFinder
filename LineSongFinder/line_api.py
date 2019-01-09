@@ -79,8 +79,8 @@ def reply_guess_song(request):
                 if msg_text == "":
                     msg_text = msg
                 else:
-                    msg_text = msg_text + ', ' + msg
-                    if len(msg_text) > 20:
+                    msg_text = msg_text + '\\' + msg
+                    if len(msg_text) >= 50:
                         break
         else:
             msg_text = "This isn't text!"

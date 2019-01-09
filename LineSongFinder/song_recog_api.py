@@ -40,9 +40,9 @@ def get_search_list_musixmatch(lyric):
 
     response = requests.request("GET", url, data=payload, headers=headers, params=querystring)
 
-    print(response.text)
+    # print(response.text)
     response_json = json.loads(response.text)
-    print(response_json)
+    # print(response_json)
 
     track_list = response_json["message"]["body"]["track_list"]
 
