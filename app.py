@@ -1,6 +1,7 @@
 from flask import Flask, request, abort
 from LineSongFinder import line_api
 import json
+
 app = Flask(__name__)
 
 
@@ -21,7 +22,7 @@ def webhook():
         request_str = json.dumps(request.json, indent=4)
         print(request_str)
 
-        line_api.reply_echo_msg(request)
+        line_api.reply_guess_song(request)
 
         return '', 200
     else:
