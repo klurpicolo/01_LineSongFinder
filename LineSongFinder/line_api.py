@@ -102,7 +102,7 @@ def reply_guess_song(request):
 
     response = requests.request("POST", url, data=json.dumps(reply_payload), headers=headers, params=querystring)
     print(response.text)
-    print("Response status from line: " + response.status_code)
+    print("Response status from line: " + str(response.status_code))
 
     if response.status_code == 200:
         # Save data in firebase
@@ -113,4 +113,4 @@ def reply_guess_song(request):
         line_db_util.record_to_firebase(q_lyric, a_track_list, a_tracks)
         print("Record is save to firebase")
     else:
-        print("Response status from line: " + response.status_code)
+        print("Response status from line: " + str(response.status_code))
