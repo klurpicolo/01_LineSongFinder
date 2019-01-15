@@ -10,7 +10,7 @@ class db_util:
             "authDomain": "linesongfinder.firebaseapp.com",
             "databaseURL": "https://linesongfinder.firebaseio.com",
             "storageBucket": "linesongfinder.appspot.com",
-            "serviceAccount": "D:\\03_Temp\\01_LineSongFinder\\resource\\ServiceAccountKey.json"
+            # "serviceAccount": "D:\\03_Temp\\01_LineSongFinder\\resource\\ServiceAccountKey.json"
             # "serviceAccount": os.path.dirname(os.path.realpath(__file__)) + "\\resource\\ServiceAccountKey.json"
         }
         self.firebase = pyrebase.initialize_app(self.config)
