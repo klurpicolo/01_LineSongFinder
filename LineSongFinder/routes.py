@@ -1,10 +1,10 @@
-from flask import Flask, request, abort
-from LineSongFinder import line_api, model
+from flask import request, abort, render_template
 import json
-
-app = Flask(__name__)
+from LineSongFinder import app
+from LineSongFinder import line_api, model
 
 line_db_util = model.db_util()
+
 
 @app.route("/")
 def hello():
@@ -18,8 +18,7 @@ def about():
 
 @app.route("/history")
 def history():
-    return ("<h1>Here is history page</h1>"
-            "<h2>" + line_db_util.retrieve_data()+"</h2>")
+    return render_template('history.html')
 
 
 @app.route("/webhook", methods=['POST'])
@@ -34,8 +33,3 @@ def webhook():
         return '', 200
     else:
         about(400)
-
-
-if __name__ == '__main__':
-    app.debug = True
-    app.run(host='localhost', port=8080)
