@@ -3,8 +3,6 @@ import json
 from LineSongFinder import app
 from LineSongFinder import line_api, model
 
-line_db_util = model.db_util()
-
 
 @app.route("/")
 def hello():
@@ -18,7 +16,15 @@ def about():
 
 @app.route("/history")
 def history():
-    return render_template('history.html')
+    line_db_util = model.db_util()
+    records = line_db_util.retrieve_data()
+    return render_template('history.html', records=records)
+
+
+# @app.route("/test")
+# def test():
+#     records = line_db_util.retrieve_data()
+#     return render_template('test.html', records=records)
 
 
 @app.route("/webhook", methods=['POST'])

@@ -1,5 +1,5 @@
 import pyrebase
-import os
+import json
 
 
 class db_util:
@@ -30,13 +30,19 @@ class db_util:
 
     def retrieve_data(self):
         all_querys = self.db.child("querys").get()
-        result = {}
-        for user in all_querys.each():
-            # print(user.key())  # Morty
-            # print(user.val())  # {name": "Mortimer 'Morty' Smith"}
-            result[user.key()] = user.val()
+        return_result = []
+        for indi_query in all_querys.each():
+            return_result.append(indi_query.val())
 
-        return result
+        return return_result
+
+    def retrieve_data_2(self):
+        all_querys = self.db.child("querys").get()
+        return_result = []
+        for indi_query in all_querys.each():
+            return_result.append(indi_query.val())
+
+        return return_result
 
 
 if __name__ == '__main__':
@@ -46,8 +52,11 @@ if __name__ == '__main__':
     # record_to_firebase(q_lyric, a_track_list, a_tracks)
 
     line_db_util = db_util()
-    dict_results = line_db_util.retrieve_data()
-    print(line_db_util.retrieve_data())
-    for query_key, song_dict in dict_results.items():
-        print(query_key)
-        print("   " + song_dict["a_track_list"])
+    # dict_results = line_db_util.retrieve_data()
+    # print(line_db_util.retrieve_data())
+    # for query_key, song_dict in dict_results.items():
+    #     print(query_key)
+    #     print("   " + song_dict["a_track_list"])
+    #     break
+
+    line_db_util.retrieve_data_2()
