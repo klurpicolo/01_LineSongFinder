@@ -1,12 +1,13 @@
-from flask import request, abort, render_template
+from flask import request, abort, render_template, url_for
 import json
 from LineSongFinder import app
 from LineSongFinder import line_api, model
 
 
 @app.route("/")
-def hello():
-    return "Hello World! Fuck You Papol"
+@app.route("/home")
+def home():
+    return render_template('home.html', title='home')
 
 
 @app.route("/about")
@@ -23,8 +24,9 @@ def history():
 
 # @app.route("/test")
 # def test():
+#     line_db_util = model.db_util()
 #     records = line_db_util.retrieve_data()
-#     return render_template('test.html', records=records)
+#     return render_template('test.html', title='test', records=records)
 
 
 @app.route("/webhook", methods=['POST'])
