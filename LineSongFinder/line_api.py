@@ -79,7 +79,7 @@ def reply_guess_song(request):
             lyric = event["message"]["text"]
             msg_text_list = song_recog_api.get_search_list_musixmatch(lyric)
             msg_text = ""
-            if msg_text_list:
+            if not msg_text_list:
                 msg_text = 'Song not found!'
                 save_db = False
             else:
