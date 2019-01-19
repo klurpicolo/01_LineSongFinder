@@ -3,7 +3,6 @@ import json
 from LineSongFinder.model import db_util
 from . import song_recog_api
 
-
 # Setup parameter for Line API
 url = "https://api.line.me/v2/bot/message/reply"
 
@@ -72,6 +71,7 @@ def reply_guess_song(request):
     events = request.json["events"]
     tracks = []
     lyric = ""
+    save_db = False
 
     for event in events:
         reply_token = event["replyToken"]
@@ -79,14 +79,19 @@ def reply_guess_song(request):
             lyric = event["message"]["text"]
             msg_text_list = song_recog_api.get_search_list_musixmatch(lyric)
             msg_text = ""
-            for msg in msg_text_list:
-                tracks.append(msg)
-                if msg_text == "":
-                    msg_text = msg
-                else:
-                    msg_text = msg_text + ",\n" + msg
-                    if len(msg_text) >= 70:
-                        break
+            if msg_text_list:
+                msg_text = 'Song not found!'
+                save_db = False
+            else:
+                for msg in msg_text_list:
+                    tracks.append(msg)
+                    if msg_text == "":
+                        msg_text = msg
+                    else:
+                        msg_text = msg_text + ",\n" + msg
+                        if len(msg_text) >= 70:
+                            save_db = True
+                            break
         else:
             msg_text = "This isn't text!"
 
@@ -104,7 +109,7 @@ def reply_guess_song(request):
     print(response.text)
     print("Response status from line: " + str(response.status_code))
 
-    if response.status_code == 200:
+    if response.status_code == 200 and save_db:
         # Save data in firebase
         line_db_util = db_util()
         q_lyric = lyric
