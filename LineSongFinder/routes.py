@@ -12,7 +12,7 @@ def home():
 
 @app.route("/about")
 def about():
-    return "<h1>Here is about page</h1>"
+    return render_template('about.html')
 
 
 @app.route("/history")
