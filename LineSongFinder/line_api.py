@@ -94,6 +94,7 @@ def reply_guess_song(request):
                             break
         else:
             msg_text = "This isn't text!"
+            save_db = False
 
     # reply_payload
     reply_msg["text"] = msg_text

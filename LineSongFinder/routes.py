@@ -18,7 +18,7 @@ def about():
 @app.route("/history")
 def history():
     line_db_util = model.db_util()
-    records = line_db_util.retrieve_data()
+    records = reversed(line_db_util.retrieve_data())
     return render_template('history.html', records=records)
 
 
