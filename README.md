@@ -7,5 +7,3 @@ Method 1 : localhost run
 
 Method 2 : Deploy app on heroku
 1. Push code to Heroku repo
-
-test

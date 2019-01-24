@@ -73,7 +73,7 @@ def reply_guess_song(request):
     lyric = ""
     save_db = False
 
-    for event in events:
+    for index, event in enumerate(events):
         reply_token = event["replyToken"]
         if event["message"]["type"] == "text":
             lyric = event["message"]["text"]
@@ -83,14 +83,14 @@ def reply_guess_song(request):
                 msg_text = 'Song not found!'
                 save_db = False
             else:
+                save_db = True
                 for msg in msg_text_list:
                     tracks.append(msg)
                     if msg_text == "":
                         msg_text = msg
                     else:
                         msg_text = msg_text + ",\n" + msg
-                        if len(msg_text) >= 70:
-                            save_db = True
+                        if index >= 3:
                             break
         else:
             msg_text = "This isn't text!"
