@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>Here is Search Page</h1>
+<div class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <form class="form-inline" method="POST" action="">
+                    {{ form.hidden_tag() }}
+                    <div class="input-group w-100">
+                        {{ form.query_text(class="form-control form-control-lg") }}
+                        <div class="input-group-append">
+                            {{ form.summit(class="btn btn-outline-info") }}
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+  <div class="py-5" style="" >
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+            {% for query in queries %}
+          <div class="card">
+            <div class="card-header text-center text-body bg-primary"><b class="text-left">{{query.track_name}}</b></div>
+            <div class="card-body">
+              <blockquote class="blockquote mb-0">
+                <p class="" style="">{{query.lyric}}</p>
+                <footer class="blockquote-footer text-right">{{query.artist_name}}</footer>
+              </blockquote>
+            </div>
+          </div>
+            {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
+
